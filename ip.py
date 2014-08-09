@@ -3,6 +3,7 @@ __author__ = 'fish'
 import urllib, urllib2
 import json
 import sys
+import re
 
 
 def get_info(ip):
@@ -17,7 +18,8 @@ def get_info(ip):
 
 
 if __name__ == "__main__":
-    if len(sys.argv)<2:
-        print "usage: python ip.py ipaddress"
-    else:
-        print get_info(sys.argv[1])
+    if len(sys.argv)>=2:
+        pat = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
+        ip = sys.argv[1]
+        if pat.search(ip):
+            print get_info(ip)
